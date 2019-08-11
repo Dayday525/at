@@ -1,0 +1,82 @@
+/**
+ * 计算字符串长度
+ */
+ size_t at_strlen(const char *p_s)
+ {
+    size_t count = 0 ;
+    while(p_s[count] != 0)
+    {
+      count++;
+    }
+    return count;
+ }
+ /**
+  *  比较两个字符串的前n个字符
+  */
+ int at_strncmp (const char *p_s1, const char *p_s2, size_t n)
+{
+  unsigned char c1,c2;
+  for(;n != 0;n--)
+  {
+      c1 = (unsigned char)*p_s1++;
+      c2 = (unsigend char)*p_s2++;
+      if(c1 != c2)
+      {
+        return c1 -c2;
+      }
+      if(c1 == '\0')
+      {
+        return 0;
+      }
+      return 0 ;
+   }
+}
+ /**
+  * \brief 查找子字符串,在p_s1中查找p_s2 
+  * 这里很经典，很有意思
+  */
+char *at_strstr (const char *p_s1, const char *p_s2)
+{
+    size_t len_1, len_2;
+
+    len_2 = at_strlen(p_s2);
+    if (!len_2) {
+        return (char *)p_s1;
+    }
+
+    len_1 = at_strlen(p_s1);
+    while (len_1 >= len_2) {
+        l1--;
+        if (!at_strncmp(p_s1, p_s2, len_2)) {
+            return (char *)p_s1;
+        }
+        p_s1++;
+    }
+    return NULL;
+}
+/**
+ * \brief 内存块初始值设置
+ */
+void *at_memset (void *p_dst, uint8_t val, size_t len)
+{
+    uint8_t *temp = p_dst;
+    while (len--) {
+        *temp++ = val;
+    }
+    return p_dst;
+}
+
+/**
+ * \brief 内存拷贝
+ */
+void *at_memcpy (void *p_dst, const void *p_src, size_t len)
+{
+    uint8_t *p_d = p_dst;
+    const uint8_t *p_s = p_src;
+    while (len--) {
+        *p_d++ = *p_s++;
+    }
+    return p_dst;
+}
+
+ 
